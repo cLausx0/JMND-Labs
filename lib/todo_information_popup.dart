@@ -14,11 +14,13 @@ class TodoInformationPopup extends StatefulWidget {
   _TodoInformationPopupState createState() => _TodoInformationPopupState();
 }
 
+// Este é o código do POPUP de adicionar
+
 class _TodoInformationPopupState extends State<TodoInformationPopup> {
   @override
   Widget build(BuildContext context) {
     return Dialog(
-      backgroundColor: Colors.deepPurpleAccent,
+      backgroundColor: Color.fromARGB(255, 53, 190, 71),
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
       elevation: 20,
       child: SingleChildScrollView(
