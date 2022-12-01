@@ -31,6 +31,7 @@ class _HomePageState extends State<HomePage> {
   ];
 
   String weekday = "";
+  int _selectedIndex = 0;
 
   void showInSnackBar(String value) {
     // Achamos que é o texto de add vazio
@@ -60,6 +61,12 @@ class _HomePageState extends State<HomePage> {
     print("changed, $weekday");
 
     updateList();
+  }
+
+  void _onItemTapped(int index) {
+    setState(() {
+      _selectedIndex = index;
+    });
   }
 
   @override
@@ -132,37 +139,36 @@ class _HomePageState extends State<HomePage> {
         },
         splashColor: Colors.deepPurple,
         shape: const RoundedRectangleBorder(
-            borderRadius: BorderRadius.all(Radius.circular(15))),
+            borderRadius: BorderRadius.all(Radius.circular(45))),
         backgroundColor: Colors.deepPurpleAccent,
         child: const Icon(
           Icons.add,
           size: 50,
         ),
       ),
-      bottomNavigationBar: NavigationBar(
-        height: 60,
-        destinations: [
-          NavigationDestination(
-            icon: const Icon(Icons.home),
+      bottomNavigationBar: BottomNavigationBar(
+        items: const <BottomNavigationBarItem>[
+          BottomNavigationBarItem(
+            //index 0
+            icon: Icon(Icons.home),
             label: 'Home',
           ),
-          NavigationDestination(
-            icon: const Icon(Icons.favorite),
+          BottomNavigationBarItem(
+            //index 1
+            icon: Icon(Icons.favorite_border_outlined),
             label: 'Pomodoro',
           ),
-          NavigationDestination(
-            icon: const Icon(Icons.bookmark),
-            label: 'Bookmarks',
-          ),
-          NavigationDestination(
-            icon: const Icon(Icons.search),
-            label: 'Search',
-          ),
-          NavigationDestination(
-            icon: const Icon(Icons.person),
-            label: 'Profile',
+          BottomNavigationBarItem(
+            //index 0
+            icon: Icon(Icons.bar_chart_sharp),
+            label: 'Graficos',
           ),
         ],
+        currentIndex: _selectedIndex, // exibe o index selecionado
+        onTap: _onItemTapped, //funcao pra mudar o valor de _selectedIndex index
+        selectedItemColor: Colors.deepPurpleAccent,
+        backgroundColor: Colors.grey[200],
+        selectedFontSize: 14,
       ),
     );
   }
