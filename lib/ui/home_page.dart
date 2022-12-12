@@ -39,7 +39,7 @@ class _HomePageState extends State<HomePage> {
         height: 100,
         width: 80,
         initialSelectedDate: DateTime.now(),
-        selectionColor: primaryclr,
+        selectionColor: primaryClr,
         selectedTextColor: Colors.white,
         dateTextStyle: GoogleFonts.lato(
           textStyle: const TextStyle(
@@ -84,12 +84,12 @@ class _HomePageState extends State<HomePage> {
                 style: subHeadingStyle,
               ),
               Text(
-                "Today",
+                "Hoje",
                 style: headingStyle,
               )
             ],
           )),
-          MyButton(label: "+ Add Task", onTap: () => Get.to(AddTaskPage()))
+          MyButton(label: "+ Add Tarefa", onTap: () => Get.to(AddTaskPage()))
         ],
       ),
     );
