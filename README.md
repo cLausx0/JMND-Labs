@@ -1,2 +1,16 @@
-# JMND-Labs
-Projeto criado com o intuito de entrega um software de gerenciamento de atividades pessoais do usuário, estilo planner, desenvolvido pelos alunos David Almeida, João Bosco, José Mirosmar e José Neto, para a disciplina de Processos de Software do curso superior de Engenharia de Software - IFPE.
+# app_task
+
+A new Flutter project.
+
+## Getting Started
+
+This project is a starting point for a Flutter application.
+
+A few resources to get you started if this is your first Flutter project:
+
+- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
+- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+
+For help getting started with Flutter development, view the
+[online documentation](https://docs.flutter.dev/), which offers tutorials,
+samples, guidance on mobile development, and a full API reference.
