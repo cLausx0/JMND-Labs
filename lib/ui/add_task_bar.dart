@@ -22,8 +22,8 @@ class _AddTaskPageState extends State<AddTaskPage> {
   final TextEditingController _noteController = TextEditingController();
 
   DateTime _selectedDate = DateTime.now();
-  String _endTime = DateFormat("hh:mm a").format(DateTime.now()).toString();
-  String _startTime = DateFormat("hh:mm a").format(DateTime.now()).toString();
+  String _endTime = DateFormat("hh:mm").format(DateTime.now()).toString();
+  String _startTime = DateFormat("hh:mm").format(DateTime.now()).toString();
 
   int _selectedRemind = 5;
   List<int> remindList = [5, 10, 15, 20, 25, 30];
