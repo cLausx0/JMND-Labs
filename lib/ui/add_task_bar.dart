@@ -1,9 +1,11 @@
+import 'package:app_task/controllers/task_controller.dart';
 import 'package:app_task/ui/theme.dart';
 import 'package:app_task/ui/widgets/button.dart';
 import 'package:app_task/ui/widgets/input_field.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
+import '../models/task.dart';
 import './theme.dart';
 
 class AddTaskPage extends StatefulWidget {
@@ -14,6 +16,8 @@ class AddTaskPage extends StatefulWidget {
 }
 
 class _AddTaskPageState extends State<AddTaskPage> {
+  final TaskController _taskController = Get.put(TaskController());
+
   final TextEditingController _titleController = TextEditingController();
   final TextEditingController _noteController = TextEditingController();
 
@@ -50,8 +54,16 @@ class _AddTaskPageState extends State<AddTaskPage> {
                 "Adicionar Tarefa",
                 style: headingStyle,
               ),
-              MyInputField(title: "Titulo", hint: "Insira seu titulo"),
-              MyInputField(title: "Nota", hint: "Insira sua notação"),
+              MyInputField(
+                title: "Titulo",
+                hint: "Insira seu titulo",
+                controller: _titleController,
+              ),
+              MyInputField(
+                title: "Nota",
+                hint: "Insira sua notação",
+                controller: _noteController,
+              ),
               MyInputField(
                 title: "Data",
                 hint: DateFormat(' d/M/y').format(_selectedDate),
@@ -171,13 +183,32 @@ class _AddTaskPageState extends State<AddTaskPage> {
 
   _validateDate() {
     if (_titleController.text.isNotEmpty && _noteController.text.isNotEmpty) {
+      _addTaskToDb();
       Get.back();
     } else if (_titleController.text.isEmpty || _noteController.text.isEmpty) {
       Get.snackbar("Erro", "Preencha todos os campos",
           snackPosition: SnackPosition.BOTTOM,
-          backgroundColor: Colors.white,
-          icon: Icon(Icons.warning_amber_rounded));
+          backgroundColor: Colors.grey[50],
+          colorText: pinkClr,
+          // ignore: prefer_const_constructors
+          icon: Icon(Icons.warning_amber_rounded, color: Colors.red));
     }
+  }
+
+  _addTaskToDb() async {
+    int value = await _taskController.addTask(
+        task: Task(
+      note: _noteController.text,
+      title: _titleController.text,
+      date: DateFormat(' d/M/y').format(_selectedDate),
+      startTime: _startTime,
+      endTime: _endTime,
+      remind: _selectedRemind,
+      repeat: _selectedRepeat,
+      color: _selectedColor,
+      isCompleted: 0,
+    ));
+    print("My id is " + "$value");
   }
 
   _colorPallete() {
@@ -243,6 +274,7 @@ class _AddTaskPageState extends State<AddTaskPage> {
           color: Get.isDarkMode ? Colors.white : Colors.black,
         ),
       ),
+      // ignore: prefer_const_literals_to_create_immutables
       actions: [
         const Icon(
           Icons.person,
